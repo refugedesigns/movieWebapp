@@ -1,0 +1,40 @@
+<div class="modal fade" tabindex="-1" id="edit-modal-{{ movie.id }}">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{ movie.name }}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="{% url 'update' movie_id=movie.id %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="text" class="form-control" id="editName" placeholder="Movie title..." name="name" value="{{ movie.name }}" required>
+            </div>
+            <br>
+            <div class="form-group">
+                <input type="text" class="form-control" id="editPicture" placeholder="Movie url..." name="picture" value="{{ movie.picture }}">
+            </div>
+            <br>
+            <div class="form-group">
+                <input type="text" class="form-control" id="editYear" placeholder="Year released..." name="released_year" value="{{ movie.released_year }}">
+            </div>
+            <br>
+            <div class="form-group">
+                <input type="text" class="form-control" id="editRating" placeholder="1-10" name="rating" min="0" max="10" value = " {{ movie.rating }}"required>
+            </div>
+            <br>
+            <div class="form-group">
+                <textarea class="form-control" id="editDescription" rows="3" placeholder="Enter description..." name="notes" value="{{ movie.notes }}"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Update movie</button>
+            </div>
+            </div>
+          </form>
+        </div>
+    </div>
+  </div>

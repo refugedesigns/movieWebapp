@@ -1,0 +1,33 @@
+{% extends 'movie_webapp/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+
+<div class="container d-flex justify-content-center">
+    <div class="row">
+      {% for movie in search_result %}
+
+      <div class="col-sm">
+          <div class="card movie_card">
+              <img src="{{ movie.picture }}" class="card-img-top" alt="...">
+              <div class="card-body">
+               <button class="btn btn-sm btn-info float-right" data-toggle="modal" data-target="#modal-{{ movie.id }}">Details</button>
+                <h5 class="card-title">{{ movie.name}}</h5>
+                    <small class="movie_info">Released Date :{{ movie.released_year }}</small>
+                    <span class="movie_info float-right badge badge-warning text-white"><i class="fas fa-star"></i> {{ movie.rating }} / 10</span>
+              </div>
+            </div>
+        </div>
+        {% include "movie_webapp/detail_modal.html" %}
+      {% endfor %}
+    </div>
+  </div>
+
+  
+
+  
+
+{% endblock %}
